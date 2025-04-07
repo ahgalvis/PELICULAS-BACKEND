@@ -1,14 +1,15 @@
 const express = require('express');
 const conectarDB = require('./config/db');
+const cors = require('cors'); // Agrega cors
 require('dotenv').config();
 
 const app = express();
 
-conectarDB();
-
+app.use(cors()); // Habilita CORS
 app.use(express.json());
 
-// Cambia 'rutas' por 'Routes'
+conectarDB();
+
 app.use('/api/v1/generos', require('./routes/genero'));
 app.use('/api/v1/directores', require('./routes/director'));
 app.use('/api/v1/productoras', require('./routes/productora'));
